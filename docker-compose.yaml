@@ -1,0 +1,22 @@
+services:
+  relay:
+    image: scsibug/nostr-rs-relay
+    ports:
+      - "7000:8080"
+  blossom:
+    image: ghcr.io/hzrd149/blossom-server:master
+    build: .
+    ports:
+      - 3001:3000
+    # enable debug logging
+    volumes:
+    #   # mount data volume
+    #   - data:/app/data
+      # mount config file
+      - ./infra/blossom/config.yml:/app/config.yaml
+    #   # mount custom www dir
+    #   - ./public:/app/public
+
+
+volumes:
+  data: {}
